@@ -1,5 +1,5 @@
 # Reddit app
-Welcome to my reddit clone project, made up of Java Spring Boot backend and simple frontend with Bootstrap.
+Welcome to my reddit clone project, implemented with Java Spring Boot backend and simple frontend with Bootstrap.
 
 ## App information & features
 - User registration, login and authentication
