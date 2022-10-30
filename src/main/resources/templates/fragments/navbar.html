@@ -1,0 +1,30 @@
+<nav xmlns:th="http://www.thymeleaf.org" th:if="${totalPages > 1}">
+    <ul class="pagination justify-content-center">
+        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+            <a class="page-link" th:href="@{'/page/1?username=' + *{username}}">First</a>
+        </li>
+        <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+            <a class="page-link" th:href="@{'/page/' + ${currentPage - 1} + '?username=' + *{username}}">Previous</a>
+        </li>
+
+        <th:block th:if="${totalPages <= 10}">
+            <li th:each="i : ${#numbers.sequence(1, totalPages)}" th:class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                <a class="page-link" th:href="@{'/page/' + ${i} + '?username=' + *{username}}">[[${i}]]</a>
+            </li>
+        </th:block>
+
+        <th:block th:if="${totalPages > 10}">
+            <li th:each="i : ${#numbers.sequence(currentPage < 10 ? 1 : (currentPage / 10) * 10, (currentPage / 10) * 10 + 9 > totalPages ? totalPages : (currentPage / 10) * 10 + 9)}"
+                th:class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                <a class="page-link" th:href="@{'/page/' + ${i} + '?username=' + *{username}}">[[${i}]]</a>
+            </li>
+        </th:block>
+
+        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+            <a class="page-link" th:href="@{'/page/' + ${currentPage + 1} + '?username=' + *{username}}">Next</a>
+        </li>
+        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+            <a class="page-link" th:href="@{'/page/' + ${totalPages} + '?username=' + *{username}}">Last</a>
+        </li>
+    </ul>
+</nav>

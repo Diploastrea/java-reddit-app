@@ -1,0 +1,11 @@
+<div xmlns:th="http://www.thymeleaf.org" class="container">
+    <div th:unless="${posts.size() == 0}" th:each="post : ${posts}" th:object="${post}" class="row">
+        <div class="col-1"><a class="btn btn-outline-primary" th:href="@{'/' + *{id} + '/upvote?username=' + ${user.username}}" th:text="'+'"></a></div>
+        <div class="col-1 fw-bold text-center" th:text="*{karma}"></div>
+        <div class="col-1"><a class="btn btn-outline-primary" th:href="@{'/' + *{id} + '/downvote?username=' + ${user.username}}" th:text="'-'"></a></div>
+        <div class="col"><a th:href="@{*{content}}" th:text="*{title}"></a></div>
+        <div class="col-2" th:text="*{postDate}"></div>
+        <div class="col-2" th:text="*{user.username}"></div>
+    </div>
+    <h1 th:unless="${posts.size() != 0}">No posts submitted yet</h1>
+</div>
